@@ -57,6 +57,12 @@ Luxirty Search 基于 Google 的可编程自定义搜索引擎(Google cse)，允
 
 用人话来说，就是内置了屏蔽哪些网站、优先搜索哪些网站。
 
+### 已知缺陷
+这些缺陷是 Google CSE 或其它限制导致的，可能得不到解决。
+- 设置为默认引擎时，搜索栏无法自动补全（网页中有自动补全）
+- 无法根据时间筛选结果
+- 缺乏同义词替换，虽然 Google CSE 基于 Google，但 Google 官网的搜索引擎运用了多种技术来优化搜索结果，最显著的一点是同义词搜索，当使用的术语有所区别时，Google官网会使用意思相近的同义词进行搜索，而 Google CSE 不会，这会导致某些情况下的结果明显少于官网。
+
 # 部署
 
 本质上而言，这是一个简单的 vue3 + vite 项目，因此你应该可以方便地将它部署到任何你喜欢的托管网站，例如 GitHub Pages、netfliy、Cloudflare Pages、vercel之类的。
@@ -67,6 +73,10 @@ Luxirty Search 基于 Google 的可编程自定义搜索引擎(Google cse)，允
 
 (可选)如果你想使用自己的cse，只需设置环境变量 `VITE_GOOGLE_CSE_CX` ，从这里创建你的 cse 并获取 cx： https://programmablesearchengine.google.com/about/
 
+注意：
+1. 如果你使用自己创建的 cse，那么的部署看起来会有区别，页面上的“For Program”等标签是通过 cse 的 “优化” 功能配置的。你需要先添加域名，然后添加对应标签，并在标签中选中想提升的域名。
+2. 你还需要修改 opensearch.xml 中的域名，详细请看 https://github.com/KoriIku/luxirty-search/issues/14
+
 ## 一键部署(推荐)
 ### Deploy with Vercel
 (搜索页404的问题已修复)
@@ -76,8 +86,8 @@ Luxirty Search 基于 Google 的可编程自定义搜索引擎(Google cse)，允
 ### Deploy to Netlify
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/KoriIku/luxirty-search)
 
-### Docker 运行 (WIP)
-`docker run --rm  -p 80:80  ghcr.io/shadowofmoo/luxirty-search`
+### Docker 运行 （感谢 @shadowofmoo）
+`docker run --rm  -p 80:80  ghcr.io/koriiku/luxirty-search`
 
 # 开发
 
